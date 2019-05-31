@@ -1,8 +1,9 @@
 // from data.js
-var tableData = data;
+var tData = data;
 
 // YOUR CODE HERE!
-var tableRef = document.getElementById('ufo-table').getElementsByTagName('tbody')[0];
+function createtable(tableData){
+var tableRef = document.getElementsByTagName('tbody')[0];
 
 for (var i = 0; i < tableData.length; i++) {
 
@@ -53,7 +54,10 @@ var newCell  = newRow.insertCell(6);
 var newText  = document.createTextNode(tableData[i].comments);
 newCell.appendChild(newText);
 
-}
+}}
+
+
+createtable(tData)
 
 var submit = d3.select("#filter-btn");
 
@@ -71,7 +75,11 @@ submit.on("click", function() {
   console.log(inputValue);
   
 
-  var filteredData = tableData.filter(sighting => sighting.datetime === inputValue);
+  var filteredData = tData.filter(sighting => sighting.datetime === inputValue);
 
   console.log(filteredData);
+  d3.select("tbody").html("");
+  
+  createtable(filteredData)
+
 })
